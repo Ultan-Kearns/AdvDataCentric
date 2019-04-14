@@ -4,19 +4,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Add Books</title>
+<title>Add Customer</title>
 </head>
 <body>
-<h1>Add New Book</h1>
-Title:<input></input>
+<h1>Add New Customer</h1>
+Customer Name: <input></input>
 <br>
-Author:<input></input>
+Loan Period(days)<input></input>
 <br>
-<button>Add</button>
+<button>add</button>
 <br>
 <a href = "/">Home</a>
-<a href = "showBooks">Show Books</a>
-<a href = "addCustomer">Add Customers</a>
+<a href = "addBook">Add Book</a>
+<a href = "addCustomer">Add Customer</a>
 <a href = "addLoan">New Loan</a>
 </body>
 </html>
