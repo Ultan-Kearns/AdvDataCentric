@@ -13,12 +13,13 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="BOOKS")
+@Table(name="books")
 public class Book {
 	@Id
 	@GeneratedValue
 	@Column(name="BID")
-	private Long bid;
+	//may change back to bid but then will have to change all methods
+	private Long id;
 		
 	@Column(name="TITLE")
 	@NotBlank
@@ -34,16 +35,14 @@ public class Book {
 	private List<Loan> loans = new ArrayList<Loan>();
 
 
-	public Long getBid() {
-		return bid;
+	public Long getid() {
+		return id;
 	}
 
 
-	public void setBid(Long bid) {
-		this.bid = bid;
+	public void setid(Long id) {
+		this.id = id;
 	}
-
-
 	public String getTitle() {
 		return title;
 	}
