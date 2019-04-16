@@ -8,13 +8,17 @@
 </head>
 <body>
 <h1>List of Books</h1>
-<table>
-
+<table style="border:2px solid black">
+<tr>
+<td  style="border:2px solid black">Book ID</td>
+<td style="border:2px solid black">Title</td>
+<td style="border:2px solid black">Author</td>
+</tr>
   <c:forEach items="${book}" var="book">
     <tr>
-    <td>${book.id}</td>
-  	<td>${book.title}</td>
-  	<td>${book.author}</td>
+    <td style="border:2px solid black">${book.id}</td>
+  	<td style="border:2px solid black">${book.title}</td>
+  	<td style="border:2px solid black">${book.author}</td>
     </tr>
   </c:forEach>
 </table>

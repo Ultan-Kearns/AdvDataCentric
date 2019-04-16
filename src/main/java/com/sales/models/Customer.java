@@ -14,12 +14,12 @@ import javax.validation.constraints.Min;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="CUSTOMERS")
+@Table(name="customers")
 public class Customer {
 	@Id
 	@GeneratedValue
 	@Column(name="CID")
-	private Long cId;
+	private Long id;
 
 	@Column(name="CNAME")
 	@NotBlank
@@ -33,12 +33,12 @@ public class Customer {
 	@OneToMany(mappedBy="cust")
 	private List<Loan> loans = new ArrayList<Loan>();
 
-	public Long getcId() {
-		return cId;
+	public Long getid() {
+		return id;
 	}
 
-	public void setcId(Long cId) {
-		this.cId = cId;
+	public void setid(Long id) {
+		this.id = id;
 	}
 
 	public String getcName() {

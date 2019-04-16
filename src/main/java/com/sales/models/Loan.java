@@ -9,12 +9,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="LOANS")
+@Table(name="loans")
 public class Loan {
 	@Id
 	@GeneratedValue
 	@Column(name="LID")
-	private Long lid;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="BID", unique=true)
@@ -29,13 +29,13 @@ public class Loan {
 	private String dueDate;
 
 
-	public Long getLid() {
-		return lid;
+	public Long getid() {
+		return id;
 	}
 
 
-	public void setLid(Long lid) {
-		this.lid = lid;
+	public void setid(Long id) {
+		this.id = id;
 	}
 
 
