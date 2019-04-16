@@ -12,16 +12,20 @@
 <table style="border:2px solid black">
 <tr>
 <td  style="border:2px solid black">Loan ID</td>
+<td style="border:2px solid black">Customer ID</td>
+<td style="border:2px solid black">Customer Name</td>
+<td style="border:2px solid black">Book Title</td>
+<td style="border:2px solid black">Author</td>
 <td style="border:2px solid black">Due Date</td>
-<td style="border:2px solid black">BID</td>
-<td style="border:2px solid black">CID</td>
 </tr>
   <c:forEach items="${loan}" var="loan">
     <tr>
     <td style="border:2px solid black">${loan.id}</td>
-  	<td style="border:2px solid black">${loan.dueDate}</td>
-  	<td style="border:2px solid black">${loan.book.id}</td>
   	<td style="border:2px solid black">${loan.cust.id}</td>
+  	<td style="border:2px solid black">${loan.cust.cName}</td>
+  	<td style="border:2px solid black">${loan.book.title}</td>
+  	<td style="border:2px solid black">${loan.book.author}</td>
+  	<td style="border:2px solid black">${loan.dueDate}</td>
     </tr>
   </c:forEach>
 </table>

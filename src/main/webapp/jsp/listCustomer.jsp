@@ -17,7 +17,7 @@
 </tr>
   <c:forEach items="${customer}" var="customer">
     <tr>
-    <td style="border:2px solid black">${customer.id}</td>
+    <td style="border:2px solid black">${customer.loans.id}</td>
   	<td style="border:2px solid black">${customer.cName}</td>
   	<td style="border:2px solid black">${customer.loanPeriod}</td>
     </tr>
