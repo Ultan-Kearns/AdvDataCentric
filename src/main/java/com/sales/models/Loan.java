@@ -38,7 +38,6 @@ public class Loan {
 		this.id = id;
 	}
 
-
 	public Book getBook() {
 		return book;
 	}

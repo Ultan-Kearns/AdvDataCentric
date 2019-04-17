@@ -30,7 +30,7 @@ public class Customer {
 	@Min(value=1)
 	private int loanPeriod;
 	
-	@OneToMany(mappedBy="cust")
+	@OneToMany(targetEntity =Loan.class, mappedBy="cust")
 	private List<Loan> loans = new ArrayList<Loan>();
 
 	public Long getid() {
