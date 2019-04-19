@@ -2,11 +2,16 @@ package com.sales.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sales.models.Book;
 import com.sales.models.Customer;
@@ -24,9 +29,18 @@ public class CustomerController {
 		return "listCustomer";
 	}
 	@RequestMapping(value = "/addCustomer")
-	public String addCustomer() {
-		
+	public String addCustomer(Model model) {
+        model.addAttribute("customer1", new Customer());
 		return "addCustomer";
+	}
+	@RequestMapping(value = "/addNewCustomer",
+            method=RequestMethod.POST)
+	public String addNewCustomer(  
+			  @ModelAttribute ("customer1") Customer c,
+			  HttpServletRequest h) {
+				System.out.println(h.getMethod());  
+				custService.save(c);
+				return "redirect:/listCustomer";
 	}
 	@RequestMapping(value = "/login")
 	public String login() {

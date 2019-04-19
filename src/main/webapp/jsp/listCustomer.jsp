@@ -13,13 +13,15 @@
 		<c:forEach items="${customer}" var="customer">
 			<tr>
 				<td><h1>${customer.id} ${customer.cName}</h1></td>
-				<br>
+					</tr>
+					<tr>
 				<td>Loan Period =
 					${customer.loanPeriod} days</td>
-					<br>
-				<td style="font-weight:bold">${customer.cName}'s Loans</td>
-				<br>
-			</tr>
+					</tr>
+					<tr>
+				<td style="font-weight: bolder">${customer.cName}'s Loans</td>
+				</tr>
+
 			<tr>
 				<!-- check if null -->
 
@@ -36,10 +38,10 @@
 						</tr>
 						<c:forEach items="${customer.loans }" varStatus="loop1">
 							<tr>
-								<td style="border: 2px solid black">"${customer.loans[loop1.index].id }"</td>
-								<td style="border: 2px solid black">"${customer.loans[loop1.index].book.id }"</td>
-								<td style="border: 2px solid black">"${customer.loans[loop1.index].book.title }"</td>
-								<td style="border: 2px solid black">"${customer.loans[loop1.index].book.author}"</td>
+								<td style="border: 2px solid black">${customer.loans[loop1.index].id }</td>
+								<td style="border: 2px solid black">${customer.loans[loop1.index].book.id }</td>
+								<td style="border: 2px solid black">${customer.loans[loop1.index].book.title }</td>
+								<td style="border: 2px solid black">${customer.loans[loop1.index].book.author}</td>
 							</tr>
 						</c:forEach>
 				</c:if>

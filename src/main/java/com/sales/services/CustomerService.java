@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sales.models.Book;
 import com.sales.models.Customer;
@@ -13,10 +16,10 @@ import com.sales.repositories.CustomerRepository;
 public class CustomerService implements CustomerRepository {
 	@Autowired
 	CustomerRepository customerRepo;
+	
 	@Override
 	public <S extends Customer> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return entity;
 	}
 
 	@Override
