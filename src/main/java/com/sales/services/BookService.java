@@ -15,8 +15,8 @@ public class BookService implements BookRepository {
 	private BookRepository bookRepo;
 	@Override
 	public <S extends Book> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
+		bookRepo.save(entity);
+		return entity;
 	}
 	@Override
 	public <S extends Book> Iterable<S> save(Iterable<S> entities) {

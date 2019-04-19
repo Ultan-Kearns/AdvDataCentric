@@ -14,7 +14,8 @@ public class LoanService implements LoanRepository{
 	@Override
 	public <S extends Loan> S save(S entity) {
 		// TODO Auto-generated method stub
-		return null;
+		LoanRepo.save(entity);
+		return entity;
 	}
 
 	@Override
