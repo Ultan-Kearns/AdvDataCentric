@@ -19,6 +19,7 @@ public class CustomerService implements CustomerRepository {
 	
 	@Override
 	public <S extends Customer> S save(S entity) {
+		customerRepo.save(entity);
 		return entity;
 	}
 

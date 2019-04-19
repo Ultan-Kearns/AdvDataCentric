@@ -38,7 +38,7 @@ public class CustomerController {
 	public String addNewCustomer(  
 			  @ModelAttribute ("customer1") Customer c,
 			  HttpServletRequest h) {
-				System.out.println(h.getMethod());  
+				
 				custService.save(c);
 				return "redirect:/listCustomer";
 	}
