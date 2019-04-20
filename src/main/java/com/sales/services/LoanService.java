@@ -1,5 +1,7 @@
 package com.sales.services;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,11 @@ public class LoanService implements LoanRepository{
 	@Override
 	public <S extends Loan> S save(S entity) {
 		// TODO Auto-generated method stub
+	 
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String dateString = formatter.format(date).toString();
+		entity.setDueDate(dateString);
 		LoanRepo.save(entity);
 		return entity;
 	}
@@ -56,8 +63,7 @@ public class LoanService implements LoanRepository{
 
 	@Override
 	public void delete(Loan entity) {
-		// TODO Auto-generated method stub
-		
+		 LoanRepo.delete(entity);	
 	}
 
 	@Override

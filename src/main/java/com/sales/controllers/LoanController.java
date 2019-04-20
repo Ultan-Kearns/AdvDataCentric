@@ -32,15 +32,21 @@ public class LoanController {
 		model.addAttribute("loan1", new Loan());
 		return "addLoan";
 	}
+	@RequestMapping(value = "/deleteLoan")
+	public String deleteLoan(Model model) {
+		model.addAttribute("loan1", new Loan());
+		return "deleteLoan";
+	}
 	@RequestMapping(value = "/addNewLoan",method=RequestMethod.POST)
 	public String addNewLoan(@ModelAttribute ("loan1") Loan loan,
-			  HttpServletRequest h) {
+			  HttpServletRequest h) {			
 				service.save(loan);
 				return "redirect:/listLoan";
 	}
-	@RequestMapping(value = "/deleteLoan")
-	public String deleteLoan() {
-		
-		return "deleteLoan";
+	@RequestMapping(value = "/deleteLoan",method=RequestMethod.POST)
+	public String deleteLoan(@ModelAttribute ("loan1") Loan loan,
+			  HttpServletRequest h) {		
+		service.delete(loan);
+		return "redirect:/listLoan";
 	}
 }

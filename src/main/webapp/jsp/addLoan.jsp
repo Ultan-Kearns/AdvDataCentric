@@ -10,15 +10,15 @@
 <body>
 <h1>New Loan</h1>
 <form:form action="/addNewLoan" modelAttribute = "loan1"  method="post">
-Customer ID: <input></input>
+Customer ID: <form:input path = "cust"></form:input>
 <br>
-Book ID: <input></input>
+Book ID: <form:input path = "book"></form:input>
 <br>
 <button type = "submit">Loan Book</button>
 </form:form >
 <a href = "/">Home</a>
-<a href = "showBooks">Show Books</a>
-<a href = "listCustomers">List Customers</a>
-<a href = "listLoans">List Loans</a>
+<a href = "/showBooks">Show Books</a>
+<a href = "/listCustomer">List Customers</a>
+<a href = "/listLoan">List Loans</a>
 </body>
 </html>
