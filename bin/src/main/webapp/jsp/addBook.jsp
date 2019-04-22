@@ -10,9 +10,9 @@
 <body>
 <h1>Add New Book</h1>
  <form:form action="/addNewBook" modelAttribute = "book1"  method="post">
-Title:<form:input path="title" required = "true"></form:input>
+Title:<form:input path="title"></form:input>
 <br>
-Author:<form:input path = "author" required ="true"></form:input>
+Author:<form:input path = "author"></form:input>
 <br>
 <button type = "submit">Add</button>
 </form:form>

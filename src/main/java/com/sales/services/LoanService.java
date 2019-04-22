@@ -1,12 +1,16 @@
 package com.sales.services;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sales.models.Customer;
 import com.sales.models.Loan;
 import com.sales.repositories.LoanRepository;
 @Service
@@ -15,11 +19,11 @@ public class LoanService implements LoanRepository{
 	LoanRepository LoanRepo;
 	@Override
 	public <S extends Loan> S save(S entity) {
-		// TODO Auto-generated method stub
-	 
-		LocalDate date = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String dateString = formatter.format(date).toString();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date()); // Now use today date.
+		c.add(Calendar.DATE, entity.getCust().getLoanPeriod()); // Adding 5 days
+		String dateString = formatter.format(c.getTime());
 		entity.setDueDate(dateString);
 		LoanRepo.save(entity);
 		return entity;

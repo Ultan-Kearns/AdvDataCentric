@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,8 +38,14 @@ public class CustomerController {
             method=RequestMethod.POST)
 	public String addNewCustomer(  
 			  @ModelAttribute ("customer1") Customer c,
-			  HttpServletRequest h) {
-				
+			  HttpServletRequest h,ModelMap map) {
+		String errorMsg = "";
+		if(c.getLoanPeriod() == 0)
+		{
+			map.put(errorMsg,"Loan Period cannot = 0");
+			return "/addCustomer";
+		}
+		errorMsg = "";
 				custService.save(c);
 				return "redirect:/listCustomer";
 	}
