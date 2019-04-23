@@ -24,8 +24,12 @@ public class BookService implements BookRepository {
 	}
 	@Override
 	public Book findOne(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Book b = bookRepo.findOne(id);
+		if(b == null)
+		{
+			return null;
+		}
+		return b;
 	}
 	@Override
 	public boolean exists(Long id) {

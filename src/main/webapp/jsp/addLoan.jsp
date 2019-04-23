@@ -10,9 +10,9 @@
 <body>
 <h1>New Loan</h1>
 <form:form action="/addNewLoan" modelAttribute = "loan1"  method="post">
-Customer ID: <form:input path = "cust"></form:input>
+Customer ID: <form:input path = "cust" required = "true"></form:input>
 <br>
-Book ID: <form:input path = "book"></form:input>
+Book ID: <form:input path = "book" required = "true"></form:input>
 <br>
 <button type = "submit">Loan Book</button>
 </form:form >

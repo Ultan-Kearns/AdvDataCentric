@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sales.models.Book;
 import com.sales.models.Loan;
+import com.sales.services.CustomerService;
 import com.sales.services.LoanService;
 
 @Controller
@@ -32,21 +33,44 @@ public class LoanController {
 		model.addAttribute("loan1", new Loan());
 		return "addLoan";
 	}
+	@RequestMapping(value = "/addNewLoan",method=RequestMethod.POST)
+	public String addNewLoan(@ModelAttribute ("loan1") Loan loan,
+			  HttpServletRequest h) {
+				Loan l = service.compareBooks(loan.getBook().getid());
+				if(l == null)
+				{
+					service.save(loan);
+				}
+				else
+				{
+					loan.setCust(l.getCust());
+					return "/newLoanException";
+				}
+				try {
+				return "redirect:/listLoan";
+				}
+				catch(Exception e)
+				{
+					return "addLoan";
+				}
+	}
 	@RequestMapping(value = "/deleteLoan")
 	public String deleteLoan(Model model) {
 		model.addAttribute("loan1", new Loan());
 		return "deleteLoan";
 	}
-	@RequestMapping(value = "/addNewLoan",method=RequestMethod.POST)
-	public String addNewLoan(@ModelAttribute ("loan1") Loan loan,
-			  HttpServletRequest h) {			
-				service.save(loan);
-				return "redirect:/listLoan";
-	}
+
 	@RequestMapping(value = "/deleteLoan",method=RequestMethod.POST)
 	public String deleteLoan(@ModelAttribute ("loan1") Loan loan,
 			  HttpServletRequest h) {		
-		service.delete(loan);
+		if(service.exists(loan.getid()) == true)
+		{
+			service.delete(loan);
+		}
+		else
+		{
+			return "deleteLoanException";
+		}
 		return "redirect:/listLoan";
 	}
 }

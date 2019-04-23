@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +7,8 @@
 <title>Delete Loan</title>
 </head>
 <body>
-<form:form modelAttribute = "loan1"  method="post">
-	Loan ID:<form:input path = "id"></form:input>
-	<br>
-	<button type = "submit">Delete Loan</button>
-	<br>
-</form:form>
+<h1>Could not delete loan</h1>
+<h2>No such loan ${loan1.id }</h2>
 <a href = "/">Home</a>
 <a href = "/showBooks">Show Books</a>
 <a href = "/listCustomer">List Customers</a>

@@ -22,7 +22,7 @@ public class Loan {
 
 	@ManyToOne
 	@JoinColumn(name="CID")
-	private Customer cust;
+	public Customer cust;
 	
 	
 	@Column(name="DUEDATE")

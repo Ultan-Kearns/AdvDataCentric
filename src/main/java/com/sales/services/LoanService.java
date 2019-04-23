@@ -3,6 +3,7 @@ package com.sales.services;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.sales.models.Customer;
 import com.sales.models.Loan;
+import com.sales.repositories.CustomerRepository;
 import com.sales.repositories.LoanRepository;
 @Service
 public class LoanService implements LoanRepository{
@@ -22,7 +24,7 @@ public class LoanService implements LoanRepository{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date()); // Now use today date.
-		c.add(Calendar.DATE, entity.getCust().getLoanPeriod()); // Adding 5 days
+		c.add(Calendar.DATE, entity.getCust().getLoanPeriod()); // add loan period to current date
 		String dateString = formatter.format(c.getTime());
 		entity.setDueDate(dateString);
 		LoanRepo.save(entity);
@@ -34,19 +36,35 @@ public class LoanService implements LoanRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	public Loan compareBooks(long id) {
+		ArrayList<Loan> loans = (ArrayList<Loan>) LoanRepo.findAll();
+		for(int i = 0; i < loans.size(); i++)
+		{
+			Loan l = (Loan) loans.get(i);
+			if(l.getBook().getid() == id)
+			{
+				return l;
+			}
+		}
+		return null;
+	}
 	@Override
 	public Loan findOne(Long id) {
-		// TODO Auto-generated method stub
 		return null;
+		
 	}
 
 	@Override
 	public boolean exists(Long id) {
 		// TODO Auto-generated method stub
-		return false;
+		if(LoanRepo.exists(id))
+		{
+		return true;
+		}
+		else {
+			return false;
+		}
 	}
-
 	@Override
 	public Iterable<Loan> findAll(Iterable<Long> ids) {
 		// TODO Auto-generated method stub
