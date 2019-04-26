@@ -14,7 +14,7 @@
 Customer Name: <form:input path = "cName" required = "true"></form:input>
 <br>
 Loan Period(days)<form:input path = "loanPeriod" var = "period" required = "true"></form:input>
-<p>${ errorMsg }</p>
+<p path = "err"></p>
 <br>
 <button type = "submit">Add</button>
 </form:form> 

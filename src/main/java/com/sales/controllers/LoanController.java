@@ -22,53 +22,50 @@ import com.sales.services.LoanService;
 public class LoanController {
 	@Autowired
 	LoanService service;
+
 	@RequestMapping(value = "/listLoan")
 	public String listLoan(Model model) {
-	    List<Loan> loan = service.findAll();
-	    model.addAttribute("loan", loan);
+		List<Loan> loan = service.findAll();
+		model.addAttribute("loan", loan);
 		return "listLoan";
 	}
+
 	@RequestMapping(value = "/addLoan")
 	public String addLoan(Model model) {
 		model.addAttribute("loan1", new Loan());
 		return "addLoan";
 	}
-	@RequestMapping(value = "/addNewLoan",method=RequestMethod.POST)
-	public String addNewLoan(@ModelAttribute ("loan1") Loan loan,
-			  HttpServletRequest h) {
-				Loan l = service.compareBooks(loan.getBook().getid());
-				if(l == null)
-				{
-					service.save(loan);
-				}
-				else
-				{
-					loan.setCust(l.getCust());
-					return "/newLoanException";
-				}
-				try {
-				return "redirect:/listLoan";
-				}
-				catch(Exception e)
-				{
-					return "addLoan";
-				}
+
+	@RequestMapping(value = "/addNewLoan", method = RequestMethod.POST)
+	public String addNewLoan(@ModelAttribute("loan1") Loan loan, HttpServletRequest h) {
+		Loan l;
+		// compare bid to other bids that are already loaned
+		try {
+			l = service.compareBooks(loan.getBook().getid());
+		} catch (Exception e) {
+ 			return "/BookCustException";
+		}
+		// if no bid matches then save otherwise navigate to newLoanException page
+		if (l == null) {
+			service.save(loan);
+		} else {
+			loan.setCust(l.getCust());
+			return "/newLoanException";
+		}
+		return "redirect:/listLoan";
 	}
+
 	@RequestMapping(value = "/deleteLoan")
 	public String deleteLoan(Model model) {
 		model.addAttribute("loan1", new Loan());
 		return "deleteLoan";
 	}
 
-	@RequestMapping(value = "/deleteLoan",method=RequestMethod.POST)
-	public String deleteLoan(@ModelAttribute ("loan1") Loan loan,
-			  HttpServletRequest h) {		
-		if(service.exists(loan.getid()) == true)
-		{
+	@RequestMapping(value = "/deleteLoan", method = RequestMethod.POST)
+	public String deleteLoan(@ModelAttribute("loan1") Loan loan, HttpServletRequest h) {
+		if (service.exists(loan.getid()) == true) {
 			service.delete(loan);
-		}
-		else
-		{
+		} else {
 			return "deleteLoanException";
 		}
 		return "redirect:/listLoan";

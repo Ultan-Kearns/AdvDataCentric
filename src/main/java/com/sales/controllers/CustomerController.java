@@ -39,13 +39,10 @@ public class CustomerController {
 	public String addNewCustomer(  
 			  @ModelAttribute ("customer1") Customer c,
 			  HttpServletRequest h,ModelMap map) {
-		String errorMsg = "";
 		if(c.getLoanPeriod() == 0)
 		{
-			map.put(errorMsg,"Loan Period cannot = 0");
 			return "/addCustomer";
 		}
-		errorMsg = "";
 				custService.save(c);
 				return "redirect:/listCustomer";
 	}
